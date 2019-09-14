@@ -16,12 +16,15 @@ public class DBFactory {
 
     public java.sql.Connection getConnection() {
         try {
-            java.util.Properties prop = new java.util.Properties();
-            prop.load(new java.io.FileReader("E:\\rest\\WebDBRs\\src\\java\\db.properties"));
-            Class.forName(prop.getProperty("driver"));
-            connection = DriverManager.getConnection(
-                    prop.getProperty("url"),
-                    prop.getProperty("username"), prop.getProperty("password"));
+//            java.util.Properties prop = new java.util.Properties();
+//            prop.load(new java.io.FileReader("E:\\rest\\WebDBRs\\src\\java\\db.properties"));
+//            Class.forName(prop.getProperty("driver"));
+ DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+ 
+connection = java.sql.DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr");
+//        DriverManager.getConnection(
+//                    prop.getProperty("url"),
+//                    prop.getProperty("username"), prop.getProperty("password"));
         } catch (Exception e) {
             e.printStackTrace();
         }
